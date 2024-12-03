@@ -1,20 +1,56 @@
-// 10.4 dynamic array class insert and erase.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+/*In the last micro exam, we created a function to split an array.
+Make it a class to store the array that has the array itself, information on current size and capacity, and a constructor;
+Create functions to erase an element and insert an element (and use them in main):*/
 
 #include <iostream>
+#include <string>
+using namespace std;
+const int SIZE = 10;
 
-int main()
-{
-    std::cout << "Hello World!\n";
+class Array {
+public:
+    string originalArray[SIZE]={"zero", "one", "two", "tree", "four", "five", "six", "seven", "eight", "nine"};
+    int size= SIZE;
+    void splitArray(string *originalArray, int originalSize, int splitPoint, string *firstPart, string *secondPart){
+        int i = 0;
+
+        for (i = 0; i < splitPoint-1; i++) {
+            firstPart[i] = originalArray[i];
+        }
+
+        for (i = splitPoint-1; i < originalSize; i++) {
+            secondPart[i] = originalArray[i];
+        }
+    };
+};
+
+
+int main() {
+    Array array;
+    string firstPart[SIZE];
+    string secondPart[SIZE];
+    int splitPoint;
+    int originalSize;
+    for (originalSize = 0; originalSize < 10; originalSize++) {
+        cout << array.originalArray[originalSize] << " ";
+    }
+    cout << "\nPlease, insert where do you want to cut this array of size "<< originalSize << ":" << endl;
+
+    cin >> splitPoint;
+
+    array.splitArray(array.originalArray, originalSize, splitPoint, firstPart, secondPart);
+
+    int i;
+    cout << "First part:" << endl;
+    for (i = 0; i < splitPoint-1; i++) {
+        cout << firstPart[i] << " ";
+    }
+    int j = i;
+    cout << endl << "SIZE 1ST PART: " << j << endl;
+
+    cout << "\nSecond part:" << endl;
+    for (i = splitPoint-1; i < originalSize; i++) {
+        cout << secondPart[i] << " ";
+    }
+     cout << endl << "SIZE 2ST PART: " << i-j << endl;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
